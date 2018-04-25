@@ -1,0 +1,26 @@
+<monitor>
+    <name>PCFFirehoseMonitor</name>
+    <type>managed</type>
+    <description>Monitors general status of Cloud Foundry
+    </description>
+    <monitor-configuration>
+    </monitor-configuration>
+    <monitor-run-task>
+        <execution-style>continuous</execution-style>
+        <execution-frequency-in-seconds>60</execution-frequency-in-seconds>
+        <name>PCF Firehose Monitor Run Task</name>
+        <display-name>PCF Firehose Monitor Task</display-name>
+        <description>PCF Firehose Monitor Task</description>
+        <type>java</type>
+        <execution-timeout-in-secs>120</execution-timeout-in-secs>
+        <task-arguments>
+            <!-- config file-->
+            <argument name="config-file" is-required="true" default-value="monitors/PCFFirehoseMonitor/config.yml"/>
+            <argument name="metric-file" is-required="true" default-value="monitors/PCFFirehoseMonitor/metrics.xml"/>
+        </task-arguments>
+        <java-task>
+            <classpath>pcf-firehose-monitoring-extension.jar</classpath>
+            <impl-class>com.appdynamics.extensions.pcffirehose.PCFFirehoseMonitor</impl-class>
+        </java-task>
+    </monitor-run-task>
+</monitor>
