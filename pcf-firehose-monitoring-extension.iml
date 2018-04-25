@@ -7,13 +7,14 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.appdynamics:machine-agent:3.7.11" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: commons-io:commons-io:2.6" level="project" />
-    <orderEntry type="library" name="Maven: com.appdynamics:appd-exts-commons:2.0.4" level="project" />
+    <orderEntry type="library" name="Maven: com.appdynamics:machine-agent:3.7.11" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
+    <orderEntry type="library" name="Maven: com.appdynamics:appd-exts-commons:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.6" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
@@ -25,47 +26,56 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.9.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.httpcomponents:httpclient:4.3.5" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.httpcomponents:httpcore:4.3.2" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: commons-logging:commons-logging:1.1.3" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.3.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.3.2" level="project" />
+    <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.3" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:slf4j-log4j12:1.7.11" level="project" />
     <orderEntry type="library" name="Maven: com.jayway.jsonpath:json-path:2.3.0" level="project" />
     <orderEntry type="library" name="Maven: net.minidev:json-smart:2.3" level="project" />
     <orderEntry type="library" name="Maven: net.minidev:accessors-smart:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.0.4" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
-    <orderEntry type="library" name="Maven: org.cloudfoundry:cloudfoundry-client-reactor:2.9.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.7" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.7" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.8.7" level="project" />
-    <orderEntry type="library" name="Maven: com.github.zafarkhaja:java-semver:0.9.0" level="project" />
-    <orderEntry type="library" name="Maven: io.jsonwebtoken:jjwt:0.7.0" level="project" />
-    <orderEntry type="library" name="Maven: org.cloudfoundry:cloudfoundry-client:2.9.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.wire:wire-runtime:2.2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.8.0" level="project" />
-    <orderEntry type="library" name="Maven: org.cloudfoundry:cloudfoundry-util:2.9.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.13" level="project" />
-    <orderEntry type="library" name="Maven: org.atteo:evo-inflector:1.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.24" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-core:4.3.7.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-web:4.3.7.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.cloudfoundry:cloudfoundry-operations:2.9.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.7" level="project" />
-    <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.0.6.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: io.projectreactor.ipc:reactor-netty:0.6.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-codec-http:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-handler-proxy:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-codec-socks:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-transport-native-epoll:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.8.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.projectreactor.ipc:reactor-ipc:0.6.1.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.11.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.11.0" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.59" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.59" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-tcnative-boringssl-static:2.0.7.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-all:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-auth:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.auth:google-auth-library-credentials:0.9.0" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-core:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotations:2.1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.instrumentation:instrumentation-api:0.4.3" level="project" />
+    <orderEntry type="library" name="Maven: io.opencensus:opencensus-api:0.10.0" level="project" />
+    <orderEntry type="library" name="Maven: io.opencensus:opencensus-contrib-grpc-metrics:0.10.0" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-context:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-netty:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-http2:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-http:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler-proxy:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-socks:4.1.17.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-okhttp:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okhttp:okhttp:2.5.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.13.0" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-protobuf:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.5.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java-util:3.5.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.7" level="project" />
+    <orderEntry type="library" name="Maven: com.google.api.grpc:proto-google-common-protos:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-protobuf-lite:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-protobuf-nano:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-5" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-stub:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: io.grpc:grpc-testing:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.mockito:mockito-core:1.9.5" level="project" />
+    <orderEntry type="library" name="Maven: org.objenesis:objenesis:1.0" level="project" />
   </component>
 </module>

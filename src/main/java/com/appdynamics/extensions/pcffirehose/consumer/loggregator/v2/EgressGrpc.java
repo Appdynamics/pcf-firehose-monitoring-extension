@@ -1,18 +1,9 @@
-package org.cloudfoundry.loggregator.v2;
+package com.appdynamics.extensions.pcffirehose.consumer.loggregator.v2;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
 import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
 import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
@@ -29,29 +20,29 @@ public final class EgressGrpc {
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @Deprecated // Use {@link #getReceiverMethod()} instead.
-  public static final io.grpc.MethodDescriptor<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest,
-      org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope> METHOD_RECEIVER = getReceiverMethod();
+  public static final io.grpc.MethodDescriptor<LoggregatorEgress.EgressRequest,
+      LoggregatorEnvelope.Envelope> METHOD_RECEIVER = getReceiverMethod();
 
-  private static volatile io.grpc.MethodDescriptor<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest,
-      org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope> getReceiverMethod;
+  private static volatile io.grpc.MethodDescriptor<LoggregatorEgress.EgressRequest,
+      LoggregatorEnvelope.Envelope> getReceiverMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest,
-      org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope> getReceiverMethod() {
-    io.grpc.MethodDescriptor<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest, org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope> getReceiverMethod;
+  public static io.grpc.MethodDescriptor<LoggregatorEgress.EgressRequest,
+      LoggregatorEnvelope.Envelope> getReceiverMethod() {
+    io.grpc.MethodDescriptor<LoggregatorEgress.EgressRequest, LoggregatorEnvelope.Envelope> getReceiverMethod;
     if ((getReceiverMethod = EgressGrpc.getReceiverMethod) == null) {
       synchronized (EgressGrpc.class) {
         if ((getReceiverMethod = EgressGrpc.getReceiverMethod) == null) {
-          EgressGrpc.getReceiverMethod = getReceiverMethod = 
-              io.grpc.MethodDescriptor.<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest, org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope>newBuilder()
+          EgressGrpc.getReceiverMethod = getReceiverMethod =
+              io.grpc.MethodDescriptor.<LoggregatorEgress.EgressRequest, LoggregatorEnvelope.Envelope>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "loggregator.v2.Egress", "Receiver"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest.getDefaultInstance()))
+                  LoggregatorEgress.EgressRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope.getDefaultInstance()))
+                  LoggregatorEnvelope.Envelope.getDefaultInstance()))
                   .setSchemaDescriptor(new EgressMethodDescriptorSupplier("Receiver"))
                   .build();
           }
@@ -61,29 +52,29 @@ public final class EgressGrpc {
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @Deprecated // Use {@link #getBatchedReceiverMethod()} instead.
-  public static final io.grpc.MethodDescriptor<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest,
-      org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch> METHOD_BATCHED_RECEIVER = getBatchedReceiverMethod();
+  public static final io.grpc.MethodDescriptor<LoggregatorEgress.EgressBatchRequest,
+      LoggregatorEnvelope.EnvelopeBatch> METHOD_BATCHED_RECEIVER = getBatchedReceiverMethod();
 
-  private static volatile io.grpc.MethodDescriptor<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest,
-      org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch> getBatchedReceiverMethod;
+  private static volatile io.grpc.MethodDescriptor<LoggregatorEgress.EgressBatchRequest,
+      LoggregatorEnvelope.EnvelopeBatch> getBatchedReceiverMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest,
-      org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch> getBatchedReceiverMethod() {
-    io.grpc.MethodDescriptor<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest, org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch> getBatchedReceiverMethod;
+  public static io.grpc.MethodDescriptor<LoggregatorEgress.EgressBatchRequest,
+      LoggregatorEnvelope.EnvelopeBatch> getBatchedReceiverMethod() {
+    io.grpc.MethodDescriptor<LoggregatorEgress.EgressBatchRequest, LoggregatorEnvelope.EnvelopeBatch> getBatchedReceiverMethod;
     if ((getBatchedReceiverMethod = EgressGrpc.getBatchedReceiverMethod) == null) {
       synchronized (EgressGrpc.class) {
         if ((getBatchedReceiverMethod = EgressGrpc.getBatchedReceiverMethod) == null) {
-          EgressGrpc.getBatchedReceiverMethod = getBatchedReceiverMethod = 
-              io.grpc.MethodDescriptor.<org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest, org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch>newBuilder()
+          EgressGrpc.getBatchedReceiverMethod = getBatchedReceiverMethod =
+              io.grpc.MethodDescriptor.<LoggregatorEgress.EgressBatchRequest, LoggregatorEnvelope.EnvelopeBatch>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "loggregator.v2.Egress", "BatchedReceiver"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest.getDefaultInstance()))
+                  LoggregatorEgress.EgressBatchRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch.getDefaultInstance()))
+                  LoggregatorEnvelope.EnvelopeBatch.getDefaultInstance()))
                   .setSchemaDescriptor(new EgressMethodDescriptorSupplier("BatchedReceiver"))
                   .build();
           }
@@ -121,15 +112,15 @@ public final class EgressGrpc {
 
     /**
      */
-    public void receiver(org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest request,
-        io.grpc.stub.StreamObserver<org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope> responseObserver) {
+    public void receiver(LoggregatorEgress.EgressRequest request,
+        io.grpc.stub.StreamObserver<LoggregatorEnvelope.Envelope> responseObserver) {
       asyncUnimplementedUnaryCall(getReceiverMethod(), responseObserver);
     }
 
     /**
      */
-    public void batchedReceiver(org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest request,
-        io.grpc.stub.StreamObserver<org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch> responseObserver) {
+    public void batchedReceiver(LoggregatorEgress.EgressBatchRequest request,
+        io.grpc.stub.StreamObserver<LoggregatorEnvelope.EnvelopeBatch> responseObserver) {
       asyncUnimplementedUnaryCall(getBatchedReceiverMethod(), responseObserver);
     }
 
@@ -139,15 +130,15 @@ public final class EgressGrpc {
             getReceiverMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest,
-                org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope>(
+                LoggregatorEgress.EgressRequest,
+                LoggregatorEnvelope.Envelope>(
                   this, METHODID_RECEIVER)))
           .addMethod(
             getBatchedReceiverMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest,
-                org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch>(
+                LoggregatorEgress.EgressBatchRequest,
+                LoggregatorEnvelope.EnvelopeBatch>(
                   this, METHODID_BATCHED_RECEIVER)))
           .build();
     }
@@ -173,16 +164,16 @@ public final class EgressGrpc {
 
     /**
      */
-    public void receiver(org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest request,
-        io.grpc.stub.StreamObserver<org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope> responseObserver) {
+    public void receiver(LoggregatorEgress.EgressRequest request,
+        io.grpc.stub.StreamObserver<LoggregatorEnvelope.Envelope> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getReceiverMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void batchedReceiver(org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest request,
-        io.grpc.stub.StreamObserver<org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch> responseObserver) {
+    public void batchedReceiver(LoggregatorEgress.EgressBatchRequest request,
+        io.grpc.stub.StreamObserver<LoggregatorEnvelope.EnvelopeBatch> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getBatchedReceiverMethod(), getCallOptions()), request, responseObserver);
     }
@@ -208,16 +199,16 @@ public final class EgressGrpc {
 
     /**
      */
-    public java.util.Iterator<org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope> receiver(
-        org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest request) {
+    public java.util.Iterator<LoggregatorEnvelope.Envelope> receiver(
+        LoggregatorEgress.EgressRequest request) {
       return blockingServerStreamingCall(
           getChannel(), getReceiverMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch> batchedReceiver(
-        org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest request) {
+    public java.util.Iterator<LoggregatorEnvelope.EnvelopeBatch> batchedReceiver(
+        LoggregatorEgress.EgressBatchRequest request) {
       return blockingServerStreamingCall(
           getChannel(), getBatchedReceiverMethod(), getCallOptions(), request);
     }
@@ -263,12 +254,12 @@ public final class EgressGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_RECEIVER:
-          serviceImpl.receiver((org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressRequest) request,
-              (io.grpc.stub.StreamObserver<org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.Envelope>) responseObserver);
+          serviceImpl.receiver((LoggregatorEgress.EgressRequest) request,
+              (io.grpc.stub.StreamObserver<LoggregatorEnvelope.Envelope>) responseObserver);
           break;
         case METHODID_BATCHED_RECEIVER:
-          serviceImpl.batchedReceiver((org.cloudfoundry.loggregator.v2.LoggregatorEgress.EgressBatchRequest) request,
-              (io.grpc.stub.StreamObserver<org.cloudfoundry.loggregator.v2.LoggregatorEnvelope.EnvelopeBatch>) responseObserver);
+          serviceImpl.batchedReceiver((LoggregatorEgress.EgressBatchRequest) request,
+              (io.grpc.stub.StreamObserver<LoggregatorEnvelope.EnvelopeBatch>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -292,7 +283,7 @@ public final class EgressGrpc {
 
     @Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return org.cloudfoundry.loggregator.v2.LoggregatorEgress.getDescriptor();
+      return LoggregatorEgress.getDescriptor();
     }
 
     @Override

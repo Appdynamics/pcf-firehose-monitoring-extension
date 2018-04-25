@@ -1,18 +1,17 @@
-#This will create this metric in all the tiers, under this path
-#metricPrefix: Custom Metrics|WMB
-
 #This will create it in specific Tier/Component. Make sure to replace <COMPONENT_ID> with the appropriate one from your environment.
 #To find the <COMPONENT_ID> in your environment, please follow the screenshot https://docs.appdynamics.com/display/PRO42/Build+a+Monitoring+Extension+Using+Java
 metricPrefix: Server|Component:<TIER ID>|Custom Metrics|CloudFoundry
 
-numberOfThreads : 5
+numberOfThreads : 10
 
-cf:
-  - host: api.local.pcfdev.io
+servers:
+  - name: "Server1"
+    host: api.sys.pie-21.cfplatformeng.com
+    port: 443
     user: admin
-    password:
-    encryptedPassword: UmDiudSXVAUSA0ZAT6ycZw==
-    skipSslValidation: true
+    password: D6YiK6fr-niTTRWkqIsVuijvqL4RjWKc
+    #encryptedPassword: UmDiudSXVAUSA0ZAT6ycZw==
+    #skipSslValidation: true
 
 encryptionKey: Hello
 

@@ -1,6 +1,12 @@
 package com.appdynamics.extensions.pcffirehose.util;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Maps;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Map;
 
 import static com.appdynamics.extensions.pcffirehose.util.Constants.*;
 
@@ -17,15 +23,45 @@ public class PCFFirehoseUtils {
                 && Strings.isNullOrEmpty(System.getProperty(PORT_ENV));
     }
 
-    public static boolean isMetricPrefixJVMArgValid() {
-        return Strings.isNullOrEmpty(System.getProperty(METRIC_PREFIX_ENV));
+    public static String getMetricPrefixFromJVMArgs() {
+        return System.getProperty(METRIC_PREFIX_ENV);
     }
 
-    public static boolean isNumOfThreadsJVMArgValid() {
-        return Strings.isNullOrEmpty(System.getProperty(NUMBER_OF_THREADS_ENV));
+    public static String getNumberOfThreadsFromJVMArgs() {
+        return System.getProperty(NUMBER_OF_THREADS_ENV);
     }
 
-    public static boolean isEncryptionKeyJVMArgValid() {
-        return Strings.isNullOrEmpty(System.getProperty(ENCRYPTION_KEY_ENV));
+    public static String getEncryptionKeyFromJVMArgs() {
+        return System.getProperty(ENCRYPTION_KEY_ENV);
+    }
+
+    public static Map<String, String> getServerFromJVMArgs() {
+        Map<String, String> server = Maps.newHashMap();
+        server.put("name", System.getProperty(INSTANCE_NAME_ENV));
+        server.put("host", System.getProperty(HOST_ENV));
+        server.put("port", System.getProperty(PORT_ENV));
+        server.put("username", System.getProperty(USERNAME_ENV));
+        server.put("password", System.getProperty(PASSWORD_ENV));
+        server.put("skipSslValidation", System.getProperty(SKIP_SSL_VALIDATION_ENV));
+        return server;
+    }
+
+    public static String readFile(String filePath)
+    {
+        StringBuilder contentBuilder = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath)))
+        {
+
+            String sCurrentLine;
+            while ((sCurrentLine = br.readLine()) != null)
+            {
+                contentBuilder.append(sCurrentLine).append("\n");
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return contentBuilder.toString();
     }
 }

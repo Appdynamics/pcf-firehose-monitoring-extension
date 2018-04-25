@@ -1,0 +1,11 @@
+<stats>
+    <stat origin="bbs" alias="Diego BBS Metrics">
+        <metric attr="ConvergenceLRPDuration" alias="Time to Run LRP Convergence (ms)"/>
+        <metric attr="RequestLatency" alias="Time to Handle Requests (ms)"/>
+        <metric attr="Domain.cf-apps" alias="Cloud Controller and Diego in Sync"/>
+        <metric attr="LRPsExtra" alias="Extra LRP instances"/>
+        <metric attr="LRPsMissing" alias="Missing LRP instances"/>
+        <metric attr="CrashedActualLRPs" alias="Crashed app instances"/>
+        <metric attr="LRPsRunning" alias="Rate of change of running app instances" delta="true"/>
+    </stat>
+</stats>

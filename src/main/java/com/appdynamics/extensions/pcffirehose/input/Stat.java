@@ -2,35 +2,23 @@ package com.appdynamics.extensions.pcffirehose.input;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by aditya.jagtiani on 4/9/18.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Stat {
+
     @XmlAttribute
-    private String url;
+    private String origin;
     @XmlAttribute
     private String alias;
-    @XmlAttribute(name = "rootElement")
-    private String rootElement;
-    @XmlAttribute(name = "metric-type")
-    private String metricType;
-    @XmlAttribute
-    public String children;
     @XmlElement(name = "metric")
     private ArrayList<MetricConfig> metricConfig;
     @XmlElement(name = "stat")
-    public Stat[] stats;
-
-
-    public String getRootElement() {
-        return rootElement;
-    }
-
-    public void setRootElement(String rootElement) {
-        this.rootElement = rootElement;
-    }
+    public List<Stat> stats;
 
     public String getAlias() {
         return alias;
@@ -48,38 +36,21 @@ public class Stat {
         this.metricConfig = metricConfig;
     }
 
-    public String getMetricType() {
-        return metricType;
-    }
-
-    public void setMetricType(String metricType) {
-        this.metricType = metricType;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Stat[] getStats() {
+    public List<Stat> getStats() {
         return stats;
     }
 
-    public void setStats(Stat[] stats) {
+    public void setStats(List<Stat> stats) {
         this.stats = stats;
     }
 
-    public String getChildren() {
-        return children;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setChildren(String children) {
-        this.children = children;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
-
 
     @XmlRootElement
     @XmlAccessorType(XmlAccessType.FIELD)
