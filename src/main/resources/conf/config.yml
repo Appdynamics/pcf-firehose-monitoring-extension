@@ -6,10 +6,10 @@ numberOfThreads : 10
 
 servers:
   - name: "Server1"
-    host: api.sys.pie-21.cfplatformeng.com
-    port: 443
-    user: admin
-    password: D6YiK6fr-niTTRWkqIsVuijvqL4RjWKc
+    host: "localhost"
+    port: 9000
+    user:
+    password:
     #encryptedPassword: UmDiudSXVAUSA0ZAT6ycZw==
     #skipSslValidation: true
 

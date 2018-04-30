@@ -16,4 +16,10 @@ public class Constants {
     public static final String DEFAULT_METRIC_PREFIX = "Custom Metrics|PCF Firehose Monitor|";
     public static final String METRIC_PREFIX_ENV = "com.appdynamics.monitors.pcf.metricPrefix";
     public static final String MONITOR_NAME = "PCF Firehose Monitor";
+    public static final String AVERAGE = "AVERAGE";
+    public static final String SUM = "SUM";
+    public static final String OBSERVATION = "OBSERVATION";
+    public static final String CURRENT = "CURRENT";
+    public static final String INDIVIDUAL = "INDIVIDUAL";
+    public static final String COLLECTIVE = "COLLECTIVE";
 }

@@ -3,15 +3,13 @@ package com.appdynamics.extensions.pcffirehose.consumer.ingress;
 import com.appdynamics.extensions.pcffirehose.consumer.loggregator.v2.EgressGrpc;
 import com.appdynamics.extensions.pcffirehose.consumer.loggregator.v2.LoggregatorEgress;
 import com.appdynamics.extensions.pcffirehose.consumer.loggregator.v2.LoggregatorEnvelope;
-import com.google.common.collect.Lists;
+import com.appdynamics.extensions.pcffirehose.util.LoggregatorMetricType;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.NegotiationType;
 import io.grpc.netty.NettyChannelBuilder;
 import io.netty.handler.ssl.ClientAuth;
 import io.netty.handler.ssl.SupportedCipherSuiteFilter;
-import org.cloudfoundry.jmxconsumer.ingress.Consumer;
-import org.cloudfoundry.jmxconsumer.ingress.Metric;
 import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLException;
@@ -48,20 +46,12 @@ public class LoggregatorConsumer {
                 .overrideAuthority(authority);
     }
 
-    public LoggregatorConsumer(String host, int port) {
-        this.channelBuilder = NettyChannelBuilder.forAddress(host, port);
-        channelBuilder.keepAliveTime(30, TimeUnit.SECONDS);
-        channelBuilder.idleTimeout(30, TimeUnit.SECONDS);
-    }
-
-
     private void safeSleep(long milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException ex) {}
     }
 
-    // TODO use these methods
     public LoggregatorMetric getLoggregatorMetric() throws NoMetricException {
         if(envelopes == null || !envelopes.hasNext()) {
             createRequest();
@@ -71,9 +61,11 @@ public class LoggregatorConsumer {
             case GAUGE:
                 Map<String, LoggregatorEnvelope.GaugeValue> metricsMap = envelope.getGauge().getMetricsMap();
                 Map.Entry<String, LoggregatorEnvelope.GaugeValue> first = metricsMap.entrySet().iterator().next();
-                return new LoggregatorMetric(first.getKey(), first.getValue().getValue(), envelope.getTimestamp(), envelope.getTagsMap());
+                return new LoggregatorMetric(first.getKey(), first.getValue().getValue(), envelope.getTimestamp(),
+                        envelope.getTagsMap(), LoggregatorMetricType.GAUGE);
             case COUNTER:
-                return new LoggregatorMetric(envelope.getCounter().getName(), (double) envelope.getCounter().getTotal(), envelope.getTimestamp(), envelope.getTagsMap());
+                return new LoggregatorMetric(envelope.getCounter().getName(), (double) envelope.getCounter().getTotal(),
+                        envelope.getTimestamp(), envelope.getTagsMap(), LoggregatorMetricType.COUNTER);
         }
         throw new NoMetricException();
     }

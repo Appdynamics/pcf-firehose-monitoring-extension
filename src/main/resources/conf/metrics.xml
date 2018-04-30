@@ -1,11 +1,21 @@
 <stats>
-    <stat origin="bbs" alias="Diego BBS Metrics">
-        <metric attr="ConvergenceLRPDuration" alias="Time to Run LRP Convergence (ms)"/>
-        <metric attr="RequestLatency" alias="Time to Handle Requests (ms)"/>
-        <metric attr="Domain.cf-apps" alias="Cloud Controller and Diego in Sync"/>
-        <metric attr="LRPsExtra" alias="Extra LRP instances"/>
-        <metric attr="LRPsMissing" alias="Missing LRP instances"/>
-        <metric attr="CrashedActualLRPs" alias="Crashed app instances"/>
-        <metric attr="LRPsRunning" alias="Rate of change of running app instances" delta="true"/>
+    <stat origin="auctioneer" alias="Diego Auctioneer Metrics">
+        <metric attr="auctioneer.numCPUS" alias="Number of Running CPUs"/>
+        <metric attr="auctioneer.AuctioneerLRPAuctionsFailed" alias="Number of failed Long Running Processes"/>
+        <metric attr="auctioneer.AuctioneerFetchStatesDuration" alias="Time to fetch state from Diego cells (nanosec)"/>
+        <metric attr="auctioneer.AuctioneerLRPAuctionsStarted" alias="Number of LRP instances started"/>
+        <metric attr="auctioneer.AuctioneerTaskAuctionsFailed" alias="Number of tasks not placed on Diego cells"/>
     </stat>
+
+    <stat origin="bbs" alias="Diego BBS Metrics">
+        <metric attr="bbs.numCPUS" alias="Number of Running CPUs"/>
+        <metric attr="bbs.ConvergenceLRPDuration" alias="Time to Run LRP Convergence (ms)"/>
+        <metric attr="bbs.RequestLatency" alias="Time to Handle Requests (ms)"/>
+        <metric attr="bbs.Domain.cf-apps" alias="Cloud Controller and Diego in Sync"/>
+        <metric attr="bbs.LRPsExtra" alias="Extra LRP instances"/>
+        <metric attr="bbs.LRPsMissing" alias="Missing LRP instances"/>
+        <metric attr="bbs.CrashedActualLRPs" alias="Crashed app instances"/>
+        <metric attr="bbs.LRPsRunning" alias="Rate of change of running app instances" delta="true"/>
+    </stat>
+
 </stats>

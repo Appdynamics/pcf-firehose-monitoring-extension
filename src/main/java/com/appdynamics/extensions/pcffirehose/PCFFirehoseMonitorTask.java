@@ -26,7 +26,6 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
     private Map<String, String> server;
     private MonitorContextConfiguration monitorContextConfiguration;
     private List<Metric> metricsToBePublished = Lists.newArrayList();
-    private LoggregatorConsumer consumer;
     private Stat.Stats metricConfiguration;
 
     public PCFFirehoseMonitorTask(Map<String, ?> config, MonitorContextConfiguration monitorContextConfiguration,
@@ -42,21 +41,22 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
         try {
             populateAndPrintStats();
         }
-        catch(Throwable e) {
-            System.out.println("PCF Firehose Monitoring Task failed for server " + e);
+        catch(Exception e) {
+            logger.error("PCF Firehose Monitoring Task failed for server " + e);
         }
     }
 
     private void populateAndPrintStats() throws Exception {
-        LoggregatorConsumer consumer = new LoggregatorConsumer(server.get("host"), 995,
-                "src/test/resources/RLPCert.pem",
-                "src/test/resources/RLPKey.key",
-                "src/test/resources/RLPCACert.pem",
-                "metrics");
+        LoggregatorConsumer consumer = new LoggregatorConsumer(server.get("host"), 9000,
+                "/Users/aditya.jagtiani/repos/appdynamics/extensions/pcf-firehose-monitoring-extension/src/test/resources/cert.pem",
+                "/Users/aditya.jagtiani/repos/appdynamics/extensions/pcf-firehose-monitoring-extension/src/test/resources/privateKey-Apr30-PKCS8.key",
+                "/Users/aditya.jagtiani/repos/appdynamics/extensions/pcf-firehose-monitoring-extension/src/test/resources/ca.pem",
+                "reverselogproxy");
         while(true) {
             try {
                 LoggregatorMetric loggregatorMetric = consumer.getLoggregatorMetric();
-                metricsToBePublished.add(new MetricDataProcessor(loggregatorMetric, metricConfiguration).extractMetric());
+                metricsToBePublished.add(new MetricDataProcessor(metricConfiguration,
+                        monitorContextConfiguration.getMetricPrefix(), server.get("name")).extractMetric(loggregatorMetric));
                 metricWriteHelper.transformAndPrintMetrics(metricsToBePublished);
                 metricsToBePublished.clear();
             }
@@ -65,9 +65,9 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
                 consumer.resetEnvelopes();
             }
         }
+        //List<LoggregatorMetric> metrics = consumer.getLoggregatorMetricsList();
     }
 
-    @Override
     public void onTaskComplete() {}
 }
 

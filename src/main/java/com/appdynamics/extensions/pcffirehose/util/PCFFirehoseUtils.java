@@ -46,20 +46,15 @@ public class PCFFirehoseUtils {
         return server;
     }
 
-    public static String readFile(String filePath)
-    {
+    public static String readFile(String filePath) {
         StringBuilder contentBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath)))
-        {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
             String sCurrentLine;
-            while ((sCurrentLine = br.readLine()) != null)
-            {
+            while ((sCurrentLine = br.readLine()) != null) {
                 contentBuilder.append(sCurrentLine).append("\n");
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return contentBuilder.toString();

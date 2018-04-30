@@ -1,5 +1,7 @@
 package com.appdynamics.extensions.pcffirehose.input;
 
+import com.google.common.collect.Maps;
+
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Stat {
     @XmlAttribute
     private String alias;
     @XmlElement(name = "metric")
-    private ArrayList<MetricConfig> metricConfig;
+    private ArrayList<MetricConfig> metricConfigs;
     @XmlElement(name = "stat")
     public List<Stat> stats;
 
@@ -28,12 +30,16 @@ public class Stat {
         this.alias = alias;
     }
 
-    public ArrayList<MetricConfig> getMetricConfig() {
-        return metricConfig;
+    public Map<String, MetricConfig> getMetricConfig() {
+        Map<String, MetricConfig> metricConfigMap = Maps.newHashMap();
+        for (MetricConfig metricConfig : metricConfigs) {
+            metricConfigMap.put(metricConfig.getAttr(), metricConfig);
+        }
+        return metricConfigMap;
     }
 
-    public void setMetricConfig(ArrayList<MetricConfig> metricConfig) {
-        this.metricConfig = metricConfig;
+    public void setMetricConfig(ArrayList<MetricConfig> metricConfigs) {
+        this.metricConfigs = metricConfigs;
     }
 
     public List<Stat> getStats() {
@@ -58,12 +64,16 @@ public class Stat {
         @XmlElement(name = "stat")
         private Stat[] stats;
 
-        public Stat[] getStats() {
-            return stats;
-        }
-
         public void setStats(Stat[] stats) {
             this.stats = stats;
+        }
+
+        public Map<String, Stat> getStats() {
+            Map<String, Stat> statsMap = Maps.newHashMap();
+            for (Stat stat : stats) {
+                statsMap.put(stat.getOrigin(), stat);
+            }
+            return statsMap;
         }
     }
 }

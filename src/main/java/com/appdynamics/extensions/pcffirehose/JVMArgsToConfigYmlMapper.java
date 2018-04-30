@@ -21,19 +21,19 @@ public class JVMArgsToConfigYmlMapper {
     }
 
     public Map<String, ?> generateConfigYmlFromJVMArgs() {
-        if(!Strings.isNullOrEmpty(getMetricPrefixFromJVMArgs())) {
+        if (!Strings.isNullOrEmpty(getMetricPrefixFromJVMArgs())) {
             logger.info("Overriding metric prefix using JVM arguments");
             configYml.put("metricPrefix", getMetricPrefixFromJVMArgs());
         }
-        if(!Strings.isNullOrEmpty(getNumberOfThreadsFromJVMArgs())) {
+        if (!Strings.isNullOrEmpty(getNumberOfThreadsFromJVMArgs())) {
             logger.info("Overriding number of threads using JVM arguments");
             configYml.put("numberOfThreads", getNumberOfThreadsFromJVMArgs());
         }
-        if(!Strings.isNullOrEmpty(getEncryptionKeyFromJVMArgs())) {
+        if (!Strings.isNullOrEmpty(getEncryptionKeyFromJVMArgs())) {
             logger.info("Overriding encryption key using JVM arguments");
             configYml.put("encryptionKey", getEncryptionKeyFromJVMArgs());
         }
-        if(areServerJVMArgsValid()) {
+        if (areServerJVMArgsValid()) {
             logger.info("Overriding server using JVM arguments");
             configYml.put("server", getServerFromJVMArgs());
         }

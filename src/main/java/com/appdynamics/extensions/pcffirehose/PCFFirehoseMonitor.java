@@ -72,7 +72,7 @@ public class PCFFirehoseMonitor extends ABaseMonitor {
     @Override
     protected void initializeMoreStuff(Map<String, String> args) {
         monitorContextConfiguration = getContextConfiguration();
-        configYml = new JVMArgsToConfigYmlMapper((Map<String, ? super Object>)monitorContextConfiguration.getConfigYml())
+        configYml = new JVMArgsToConfigYmlMapper((Map<String, ? super Object>) monitorContextConfiguration.getConfigYml())
                 .generateConfigYmlFromJVMArgs();
         monitorContextConfiguration.setMetricXml(args.get("metric-file"), Stat.Stats.class);
     }
