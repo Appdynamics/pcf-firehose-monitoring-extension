@@ -49,7 +49,7 @@ public class MetricDataProcessor {
                     String metricValue = String.valueOf(loggregatorMetric.getValue());
                     Map<String, String> propertiesMap = new ObjectMapper().convertValue(currentMetricCfg, Map.class);
                     setMetricQualifiers(loggregatorMetric, propertiesMap);
-                    metricName = metricPrefix + "|" + serverName + "|" + currentStat.getAlias() + "|" +
+                    metricName = metricPrefix + serverName + "|" + currentStat.getAlias() + "|" +
                             loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|" + currentMetricCfg.getAlias();
                     logger.debug("Currently publishing metric {} with a reported value of {}", metricName, metricValue);
                     metric = new Metric(currentMetricCfg.getAlias(), metricValue, metricName, propertiesMap);

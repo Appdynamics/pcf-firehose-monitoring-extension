@@ -39,4 +39,10 @@ public class JVMArgsToConfigYmlMapper {
         }
         return configYml;
     }
+
+    // todo get rid of config.yml
+    // todo use the correct environment variable names
+    // todo manipulate servers json
+    // todo convert cert strings to file using org.apache.commons.io.FileUtils.writeStringToFile(File file, String data)
+
 }

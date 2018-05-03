@@ -1,0 +1,5 @@
+<stats>
+    <stat origin="auctioneer" alias="Diego Auctioneer Metrics">
+        <metric attr="auctioneer.TestLoggregatorMetric" alias="Test Loggregator Metric"/>
+    </stat>
+</stats>

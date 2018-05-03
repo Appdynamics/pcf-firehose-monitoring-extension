@@ -1,6 +1,7 @@
 package com.appdynamics.extensions.pcffirehose.consumer.ingress;
 
 import com.appdynamics.extensions.pcffirehose.util.LoggregatorMetricType;
+import com.google.common.annotations.VisibleForTesting;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class LoggregatorMetric {
         this.metricType = metricType;
         this.name = generateName(name);
     }
+
 
     private String generateName(String name) {
         if (origin != null) {
