@@ -1,9 +1,6 @@
 /*
- * Copyright 2018. AppDynamics LLC and its affiliates.
- * All Rights Reserved.
- * This is unpublished proprietary source code of AppDynamics LLC and its affiliates.
- * The copyright notice above does not evidence any actual or intended publication of such source code.
- *
+ * Copyright 2018. AppDynamics LLC and its affiliates. All Rights Reserved.
+ * This is unpublished proprietary source code of AppDynamics LLC and its affiliates. The copyright notice above does not evidence any actual or intended publication of such source code.
  */
 
 package com.appdynamics.extensions.pcffirehose.input;
@@ -37,8 +34,8 @@ public class MetricConfig {
     private String clusterRollUpType;
     @XmlAttribute
     private BigDecimal multiplier;
-    @XmlElement(name="isBoolean")
-    private String isBoolean= "false";
+    @XmlElement(name = "isBoolean")
+    private String isBoolean = "false";
     @XmlElement(name = "convert")
     private MetricConverter[] convert;
 
@@ -108,14 +105,14 @@ public class MetricConfig {
 
     public Map<String, String> getConvert() {
         Map<String, String> converterMap = Maps.newHashMap();
-        if(convert!=null && convert.length > 0) {
+        if (convert != null && convert.length > 0) {
             return generateConverterMap(converterMap);
         }
         return converterMap;
     }
 
     private Map<String, String> generateConverterMap(Map<String, String> converterMap) {
-        for(MetricConverter converter : convert) {
+        for (MetricConverter converter : convert) {
             converterMap.put(converter.getLabel(), converter.getValue());
         }
         return converterMap;

@@ -1,3 +1,8 @@
+/*
+ * Copyright 2018. AppDynamics LLC and its affiliates. All Rights Reserved.
+ * This is unpublished proprietary source code of AppDynamics LLC and its affiliates. The copyright notice above does not evidence any actual or intended publication of such source code.
+ */
+
 package com.appdynamics.extensions.pcffirehose;
 
 import com.appdynamics.extensions.AMonitorTaskRunnable;
@@ -13,8 +18,11 @@ import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
+
+import static com.appdynamics.extensions.pcffirehose.util.PCFFirehoseUtils.*;
 
 /**
  * Created by aditya.jagtiani on 3/20/18.
@@ -30,7 +38,6 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
 
     public PCFFirehoseMonitorTask(Map<String, ?> config, MonitorContextConfiguration monitorContextConfiguration,
                                   MetricWriteHelper metricWriteHelper, Map<String, String> server) {
-        this.config = config;
         this.metricWriteHelper = metricWriteHelper;
         this.server = server;
         this.monitorContextConfiguration = monitorContextConfiguration;
@@ -40,38 +47,32 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
     public void run() {
         try {
             populateAndPrintStats();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             logger.error("PCF Firehose Monitoring Task failed for server " + e);
         }
     }
 
     private void populateAndPrintStats() throws Exception {
-        LoggregatorConsumer consumer = new LoggregatorConsumer(server.get("host"), 9000,
-                "/Users/aditya.jagtiani/repos/appdynamics/extensions/pcf-firehose-monitoring-extension/src/test/resources/cert.pem",
-                "/Users/aditya.jagtiani/repos/appdynamics/extensions/pcf-firehose-monitoring-extension/src/test/resources/privateKey-Apr30-PKCS8.key",
-                "/Users/aditya.jagtiani/repos/appdynamics/extensions/pcf-firehose-monitoring-extension/src/test/resources/ca.pem",
-                "reverselogproxy");
-        while(true) {
+        LoggregatorConsumer consumer = new LoggregatorConsumer(server.get("host"), Integer.parseInt(server.get("port")),
+                getCertificate(), getPrivateKey(), getCACertificate(), getAuthority());
+
+        while (true) {
             try {
                 LoggregatorMetric loggregatorMetric = consumer.getLoggregatorMetric();
                 Metric metric = new MetricDataProcessor(metricConfiguration,
                         monitorContextConfiguration.getMetricPrefix(), server.get("name")).extractMetric(loggregatorMetric);
-                if(metric != null) {
+                if (metric != null) {
                     metricsToBePublished.add(metric);
                     metricWriteHelper.transformAndPrintMetrics(metricsToBePublished);
                     metricsToBePublished.clear();
                 }
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 logger.error("Error encountered while processing metrics", e);
                 consumer.resetEnvelopes();
             }
         }
-        //List<LoggregatorMetric> metrics = consumer.getLoggregatorMetricsList();
     }
 
-    public void onTaskComplete() {}
+    public void onTaskComplete() {
+    }
 }
-
-// io.grpc.StatusRuntimeException: UNAVAILABLE: Channel closed while performing protocol negotiation (443)
