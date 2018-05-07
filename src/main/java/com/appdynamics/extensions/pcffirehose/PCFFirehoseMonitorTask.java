@@ -55,10 +55,13 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
         while(true) {
             try {
                 LoggregatorMetric loggregatorMetric = consumer.getLoggregatorMetric();
-                metricsToBePublished.add(new MetricDataProcessor(metricConfiguration,
-                        monitorContextConfiguration.getMetricPrefix(), server.get("name")).extractMetric(loggregatorMetric));
-                metricWriteHelper.transformAndPrintMetrics(metricsToBePublished);
-                metricsToBePublished.clear();
+                Metric metric = new MetricDataProcessor(metricConfiguration,
+                        monitorContextConfiguration.getMetricPrefix(), server.get("name")).extractMetric(loggregatorMetric);
+                if(metric != null) {
+                    metricsToBePublished.add(metric);
+                    metricWriteHelper.transformAndPrintMetrics(metricsToBePublished);
+                    metricsToBePublished.clear();
+                }
             }
             catch(Exception e) {
                 logger.error("Error encountered while processing metrics", e);

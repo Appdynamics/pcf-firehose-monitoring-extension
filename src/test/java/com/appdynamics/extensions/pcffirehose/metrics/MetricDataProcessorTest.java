@@ -45,8 +45,9 @@ public class MetricDataProcessorTest {
         Assert.assertTrue(metric.getMetricName().equals("Test Loggregator Metric"));
         Assert.assertTrue(metric.getMetricValue().equals(String.valueOf(loggregatorMetric.getValue())));
         Assert.assertTrue(metric.getMetricPath().equals(this.metricPrefix + this.serverName +
-                "|" + this.statsMap.get(loggregatorMetric.getOrigin()).getAlias() + "|" + loggregatorMetric.getDeployment() +
-                "|" + loggregatorMetric.getJob() + "|" + statsMap.get(loggregatorMetric.getOrigin()).getMetricConfig()
+                "|" + loggregatorMetric.getOrigin() + "|" + loggregatorMetric.getDeployment() +
+                "|" + loggregatorMetric.getJob() + "|" + this.statsMap.get(loggregatorMetric.getOrigin()).getAlias() + "|"
+                + statsMap.get(loggregatorMetric.getOrigin()).getMetricConfig()
                 .get(loggregatorMetric.getName()).getAlias()));
         Assert.assertTrue(metric.getAggregationType().equals("AVERAGE"));
         Assert.assertTrue(metric.getTimeRollUpType().equals("AVERAGE"));

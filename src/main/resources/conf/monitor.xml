@@ -1,8 +1,7 @@
 <monitor>
     <name>PCFFirehoseMonitor</name>
     <type>managed</type>
-    <description>Monitors general status of Cloud Foundry
-    </description>
+    <description>Monitors general status of Cloud Foundry</description>
     <monitor-configuration>
     </monitor-configuration>
     <monitor-run-task>

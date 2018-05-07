@@ -1,10 +1,10 @@
 <stats>
-    <stat origin="auctioneer" alias="Diego Auctioneer Metrics">
+<!--    <stat origin="auctioneer" alias="Diego Auctioneer Metrics">
         <metric attr="auctioneer.numCPUS" alias="Number of Running CPUs"/>
         <metric attr="auctioneer.AuctioneerLRPAuctionsFailed" alias="Number of failed Long Running Processes"/>
-        <metric attr="auctioneer.AuctioneerFetchStatesDuration" alias="Time to fetch state from Diego cells (nanosec)"/>
+        <metric attr="auctioneer.AuctioneerFetchStatesDuration" alias="Time to fetch state from Diego cells (ns)"/>
         <metric attr="auctioneer.AuctioneerLRPAuctionsStarted" alias="Number of LRP instances started"/>
-        <metric attr="auctioneer.AuctioneerTaskAuctionsFailed" alias="Number of tasks not placed on Diego cells"/>
+        <metric attr="auctioneer.LockHeld" alias="Lock Held (0=no, 1=yes)"/>
     </stat>
 
     <stat origin="bbs" alias="Diego BBS Metrics">
@@ -16,6 +16,56 @@
         <metric attr="bbs.LRPsMissing" alias="Missing LRP instances"/>
         <metric attr="bbs.CrashedActualLRPs" alias="Crashed app instances"/>
         <metric attr="bbs.LRPsRunning" alias="Rate of change of running app instances" delta="true"/>
+    </stat>
+
+    <stat origin="rep" alias="Diego Cell Metrics">
+        <metric attr="rep.CapacityRemainingMemory" alias="Remaining Memory (MiB)"/>
+        <metric attr="bbs.LockHeld" alias="Remaining Disk (MiB)"/>
+        <metric attr="rep.RepBulkSyncDuration" alias="Sync Duration (ns)"/>
+        <metric attr="rep.UnhealthyCell" alias="Health Status"/>
+    </stat>
+
+    <stat origin="locket" alias="Diego Locket Metrics">
+        <metric attr="locket.ActiveLocks" alias="Active Locks"/>
+        <metric attr="locket.ActivePresences" alias="Active Presences"/>
+    </stat>
+
+    <stat origin="route_emitter" alias="Diego Route Emitter Metrics">
+        <metric attr="route_emitter.RouteEmitterSyncDuration" alias="Route Emitter Sync Duration (ns)"/>
+    </stat>
+
+    <stat origin="mysql" alias="PAS MySQL KPIs">
+        <metric attr="mysql./mysql/available" alias="MySQL Server Availability"/>
+        <metric attr="mysql./mysql/galera/wsrep_ready" alias="Galera Cluster Node Readiness"/>
+        <metric attr="mysql./mysql/galera/wsrep_cluster_size" alias="Galera Cluster Size"/>
+        <metric attr="mysql./mysql/galera/wsrep_cluster_status" alias="Galera Cluster Status"/>
+        <metric attr="mysql./mysql/net/connections" alias="Connections per Second"/>
+        <metric attr="mysql./mysql/performance/questions" alias="Query Rate"/>
+        <metric attr="mysql./mysql/performance/busy_time" alias="MySQL CPU Busy Time (%)"/>
+    </stat>
+
+    <stat origin="gorouter" alias="Gorouter Metrics">
+        <metric attr="gorouter.file_descriptors" alias="Router File Descriptors"/>
+        <metric attr="gorouter.backend_exhausted_conns" alias="Galera Cluster Node Readiness"/>
+        <metric attr="gorouter.latency" alias="Galera Cluster Size"/>
+        <metric attr="gorouter.ms_since_last_registry_update" alias="Galera Cluster Status"/>
+        <metric attr="gorouter.bad_gateways" alias="Connections per Second"/>
+        <metric attr="gorouter.responses.5xx" alias="Query Rate"/>
+        <metric attr="gorouter.registry_message.route-emitter" alias="MySQL CPU Busy Time (%)"/>
+    </stat>
+
+    <stat origin="uaa" alias="UAA Metrics">
+        <metric attr="uaa.requests.global.completed.count" alias="UAA Throughput"/>
+        <metric attr="uaa.server.inflight.count" alias="UAA Requests in Flight"/>
+    </stat>-->
+
+    <stat origin="bosh-system-metrics-forwarder" alias="BOSH Metrics">
+        <metric attr="bosh-system-metrics-forwarder.system.healthy" alias="VM Health"/>
+        <metric attr="bosh-system-metrics-forwarder.system.mem.percent" alias="VM Memory Used (%)"/>
+        <metric attr="bosh-system-metrics-forwarder.system.disk.system.percent" alias="VM Disk Used (%)"/>
+        <metric attr="bosh-system-metrics-forwarder.system.disk.ephemeral.percent" alias="VM Ephemeral Disk Used (%)"/>
+        <metric attr="bosh-system-metrics-forwarder.system.disk.persistent.percent" alias="VM Persistent Disk Used (%)"/>
+        <metric attr="bosh-system-metrics-forwarder.system.cpu.user" alias="VM CPU Utilization (%)"/>
     </stat>
 
 </stats>
