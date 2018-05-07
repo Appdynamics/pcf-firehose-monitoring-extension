@@ -22,7 +22,6 @@ public class MetricDataProcessorTest {
 
     private MetricDataProcessor metricDataProcessor;
     private Map<String, Stat> statsMap;
-    private Stat.Stats metricConfiguration;
     private String serverName;
     private String metricPrefix;
     private MonitorContextConfiguration monitorContextConfiguration = new MonitorContextConfiguration("PCF Firehose",
@@ -31,7 +30,7 @@ public class MetricDataProcessorTest {
     @Before
     public void initialize() {
         monitorContextConfiguration.setMetricXml("/Users/aditya.jagtiani/repos/appdynamics/extensions/pcf-firehose-monitoring-extension/src/test/resources/test-metrics.xml", Stat.Stats.class);
-        metricConfiguration = (Stat.Stats) monitorContextConfiguration.getMetricsXml();
+        Stat.Stats metricConfiguration = (Stat.Stats) monitorContextConfiguration.getMetricsXml();
         statsMap = metricConfiguration.getStats();
         metricPrefix = "Custom Metrics|PCF Firehose|";
         serverName = "Server 1";
@@ -45,10 +44,9 @@ public class MetricDataProcessorTest {
         Assert.assertTrue(metric.getMetricName().equals("Test Loggregator Metric"));
         Assert.assertTrue(metric.getMetricValue().equals(String.valueOf(loggregatorMetric.getValue())));
         Assert.assertTrue(metric.getMetricPath().equals(this.metricPrefix + this.serverName +
-                "|" + loggregatorMetric.getOrigin() + "|" + loggregatorMetric.getDeployment() +
-                "|" + loggregatorMetric.getJob() + "|" + this.statsMap.get(loggregatorMetric.getOrigin()).getAlias() + "|"
-                + statsMap.get(loggregatorMetric.getOrigin()).getMetricConfig()
-                .get(loggregatorMetric.getName()).getAlias()));
+                "|" + this.statsMap.get(loggregatorMetric.getOrigin()).getAlias() + "|" + loggregatorMetric.getOrigin()
+                + "|" + loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|"
+                + statsMap.get(loggregatorMetric.getOrigin()).getMetricConfig().get(loggregatorMetric.getName()).getAlias()));
         Assert.assertTrue(metric.getAggregationType().equals("AVERAGE"));
         Assert.assertTrue(metric.getTimeRollUpType().equals("AVERAGE"));
         Assert.assertTrue(metric.getClusterRollUpType().equals("INDIVIDUAL"));

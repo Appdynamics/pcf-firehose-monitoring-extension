@@ -1,5 +1,5 @@
 <stats>
-<!--    <stat origin="auctioneer" alias="Diego Auctioneer Metrics">
+    <stat origin="auctioneer" alias="Diego Auctioneer Metrics">
         <metric attr="auctioneer.numCPUS" alias="Number of Running CPUs"/>
         <metric attr="auctioneer.AuctioneerLRPAuctionsFailed" alias="Number of failed Long Running Processes"/>
         <metric attr="auctioneer.AuctioneerFetchStatesDuration" alias="Time to fetch state from Diego cells (ns)"/>
@@ -57,7 +57,7 @@
     <stat origin="uaa" alias="UAA Metrics">
         <metric attr="uaa.requests.global.completed.count" alias="UAA Throughput"/>
         <metric attr="uaa.server.inflight.count" alias="UAA Requests in Flight"/>
-    </stat>-->
+    </stat>
 
     <stat origin="bosh-system-metrics-forwarder" alias="BOSH Metrics">
         <metric attr="bosh-system-metrics-forwarder.system.healthy" alias="VM Health"/>
