@@ -1,13 +1,13 @@
 #This will create it in specific Tier/Component. Make sure to replace <COMPONENT_ID> with the appropriate one from your environment.
 #To find the <COMPONENT_ID> in your environment, please follow the screenshot https://docs.appdynamics.com/display/PRO42/Build+a+Monitoring+Extension+Using+Java
-metricPrefix:
+metricPrefix: "Server|Component:117|Custom Metrics|PCF|"
 
-numberOfThreads :
+numberOfThreads: 10
 
 server:
-  name:
-  host:
-  port:
+  name: xyz
+  host: abc
+  port: 1
 
 
 

@@ -36,7 +36,7 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
     private List<Metric> metricsToBePublished = Lists.newArrayList();
     private Stat.Stats metricConfiguration;
 
-    public PCFFirehoseMonitorTask(Map<String, ?> config, MonitorContextConfiguration monitorContextConfiguration,
+    public PCFFirehoseMonitorTask(MonitorContextConfiguration monitorContextConfiguration,
                                   MetricWriteHelper metricWriteHelper, Map<String, String> server) {
         this.metricWriteHelper = metricWriteHelper;
         this.server = server;
@@ -54,13 +54,16 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
 
     private void populateAndPrintStats() throws Exception {
         LoggregatorConsumer consumer = new LoggregatorConsumer(server.get("host"), Integer.parseInt(server.get("port")),
-                getCertificate(), getPrivateKey(), getCACertificate(), getAuthority());
+                writeCertFile(processCertFile(getCertificate(), "-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----"), "conf/cert.pem"),
+                writeCertFile(processCertFile(getPrivateKey(), "-----BEGIN PRIVATE KEY-----", "-----END PRIVATE KEY-----"), "conf/privateKey.key"),
+                writeCertFile(processCertFile(getCACertificate(), "-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----"), "conf/cacert.pem"),
+                getAuthority());
 
         while (true) {
             try {
                 LoggregatorMetric loggregatorMetric = consumer.getLoggregatorMetric();
                 Metric metric = new MetricDataProcessor(metricConfiguration,
-                        monitorContextConfiguration.getMetricPrefix(), server.get("name")).extractMetric(loggregatorMetric);
+                        getMetricPrefix(), server.get("name")).extractMetric(loggregatorMetric);
                 if (metric != null) {
                     metricsToBePublished.add(metric);
                     metricWriteHelper.transformAndPrintMetrics(metricsToBePublished);

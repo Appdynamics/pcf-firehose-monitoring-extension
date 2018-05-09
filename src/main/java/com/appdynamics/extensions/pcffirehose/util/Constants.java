@@ -17,7 +17,7 @@ public class Constants {
     public static final String CERT_FILE_SYSTEM_PROP = "APPD_NOZZLE_CERT_FILE";
     public static final String CA_CERT_FILE_SYSTEM_PROP = "APPD_NOZZLE_CA_CERT_FILE";
     public static final String PRIVATE_KEY_SYSTEM_PROP = "APPD_NOZZLE_PRIVATE_KEY";
-    public static final String AUTHORITY_SYSTEM_PROP = "APPD_NOZLE_AUTHORITY";
+    public static final String AUTHORITY_SYSTEM_PROP = "APPD_NOZZLE_AUTHORITY";
 
     public static final String DEFAULT_METRIC_PREFIX = "Custom Metrics|PCF Firehose Monitor|";
     public static final String MONITOR_NAME = "PCF Firehose Monitor";
