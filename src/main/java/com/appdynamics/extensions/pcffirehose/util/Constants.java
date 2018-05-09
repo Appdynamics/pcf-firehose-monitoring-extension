@@ -19,6 +19,11 @@ public class Constants {
     public static final String PRIVATE_KEY_SYSTEM_PROP = "APPD_NOZZLE_PRIVATE_KEY";
     public static final String AUTHORITY_SYSTEM_PROP = "APPD_NOZZLE_AUTHORITY";
 
+    public static final String CERTIFICATE_HEADER = "-----BEGIN CERTIFICATE-----";
+    public static final String CERTIFICATE_FOOTER = "-----END CERTIFICATE-----";
+    public static final String PRIVATE_KEY_HEADER = "-----BEGIN PRIVATE KEY-----";
+    public static final String PRIVATE_KEY_FOOTER = "-----END PRIVATE KEY-----";
+
     public static final String DEFAULT_METRIC_PREFIX = "Custom Metrics|PCF Firehose Monitor|";
     public static final String MONITOR_NAME = "PCF Firehose Monitor";
     public static final String AVERAGE = "AVERAGE";

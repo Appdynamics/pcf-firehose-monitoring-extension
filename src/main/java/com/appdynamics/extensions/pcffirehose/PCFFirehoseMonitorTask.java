@@ -13,15 +13,14 @@ import com.appdynamics.extensions.pcffirehose.consumer.ingress.LoggregatorConsum
 import com.appdynamics.extensions.pcffirehose.consumer.ingress.LoggregatorMetric;
 import com.appdynamics.extensions.pcffirehose.input.Stat;
 import com.appdynamics.extensions.pcffirehose.metrics.MetricDataProcessor;
-import com.appdynamics.extensions.pcffirehose.util.PCFFirehoseUtils;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import static com.appdynamics.extensions.pcffirehose.util.Constants.*;
 import static com.appdynamics.extensions.pcffirehose.util.PCFFirehoseUtils.*;
 
 /**
@@ -54,9 +53,9 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
 
     private void populateAndPrintStats() throws Exception {
         LoggregatorConsumer consumer = new LoggregatorConsumer(server.get("host"), Integer.parseInt(server.get("port")),
-                writeCertFile(processCertFile(getCertificate(), "-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----"), "conf/cert.pem"),
-                writeCertFile(processCertFile(getPrivateKey(), "-----BEGIN PRIVATE KEY-----", "-----END PRIVATE KEY-----"), "conf/privateKey.key"),
-                writeCertFile(processCertFile(getCACertificate(), "-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----"), "conf/cacert.pem"),
+                writeCertFile(processCertFile(getCertificate(), CERTIFICATE_HEADER, CERTIFICATE_FOOTER), "conf/cert.pem"),
+                writeCertFile(processCertFile(getPrivateKey(), PRIVATE_KEY_HEADER, PRIVATE_KEY_FOOTER), "conf/privateKey.key"),
+                writeCertFile(processCertFile(getCACertificate(), CERTIFICATE_HEADER, CERTIFICATE_FOOTER), "conf/cacert.pem"),
                 getAuthority());
 
         while (true) {
