@@ -5,73 +5,96 @@
 
 <stats>
     <stat origin="auctioneer" alias="Diego Auctioneer Metrics">
-        <metric attr="auctioneer.AuctioneerLRPAuctionsFailed" alias="Number of failed Long Running Processes"/>
-        <metric attr="auctioneer.AuctioneerFetchStatesDuration" alias="Time to fetch state from Diego cells (ns)"/>
-        <metric attr="auctioneer.AuctioneerLRPAuctionsStarted" alias="Number of LRP instances started"/>
-        <metric attr="auctioneer.LockHeld" alias="Lock Held (0=no, 1=yes)"/>
+        <metric attr="auctioneer.AuctioneerLRPAuctionsFailed"/>
+        <metric attr="auctioneer.AuctioneerFetchStatesDuration" />
+        <metric attr="auctioneer.AuctioneerLRPAuctionsStarted" />
+        <metric attr="auctioneer.LockHeld" />
     </stat>
 
     <stat origin="bbs" alias="Diego BBS Metrics">
-        <metric attr="bbs.ConvergenceLRPDuration" alias="Time to Run LRP Convergence (ms)"/>
-        <metric attr="bbs.RequestLatency" alias="Time to Handle Requests (ms)"/>
-        <metric attr="bbs.Domain.cf-apps" alias="Cloud Controller and Diego in Sync"/>
-        <metric attr="bbs.LRPsExtra" alias="Extra LRP instances"/>
-        <metric attr="bbs.LRPsMissing" alias="Missing LRP instances"/>
-        <metric attr="bbs.CrashedActualLRPs" alias="Crashed app instances"/>
-        <metric attr="bbs.LRPsRunning" alias="Rate of change of running app instances"/>
-        <metric attr="bbs.LockHeld" alias="Lock Held by BBS"/>
+        <metric attr="bbs.ConvergenceLRPDuration" />
+        <metric attr="bbs.RequestLatency" />
+        <metric attr="bbs.Domain.cf-apps" />
+        <metric attr="bbs.LRPsExtra" />
+        <metric attr="bbs.LRPsMissing"/>
+        <metric attr="bbs.CrashedActualLRPs"/>
+        <metric attr="bbs.LRPsRunning"/>
+        <metric attr="bbs.LockHeld"/>
     </stat>
 
     <stat origin="rep" alias="Diego Cell Metrics">
-        <metric attr="rep.CapacityRemainingMemory" alias="Remaining Memory (MiB)"/>
-        <metric attr="bbs.LockHeld" alias="Remaining Disk (MiB)"/>
-        <metric attr="rep.RepBulkSyncDuration" alias="Sync Duration (ns)"/>
-        <metric attr="rep.UnhealthyCell" alias="Health Status"/>
+        <metric attr="rep.CapacityRemainingMemory"/>
+        <metric attr="rep.CapacityRemainingDisk"/>
+        <metric attr="rep.RepBulkSyncDuration"/>
+        <metric attr="rep.UnhealthyCell"/>
+        <metric attr="rep.CapacityTotalMemory"/>
+        <metric attr="rep.CapacityRemainingContainers"/>
+        <metric attr="rep.CapacityTotalContainers"/>
+        <metric attr="rep.CapacityTotalDisk"/>
     </stat>
 
     <stat origin="locket" alias="Diego Locket Metrics">
-        <metric attr="locket.ActiveLocks" alias="Active Locks"/>
-        <metric attr="locket.ActivePresences" alias="Active Presences"/>
+        <metric attr="locket.ActiveLocks"/>
+        <metric attr="locket.ActivePresences"/>
     </stat>
 
     <stat origin="route_emitter" alias="Diego Route Emitter Metrics">
-        <metric attr="route_emitter.RouteEmitterSyncDuration" alias="Route Emitter Sync Duration (ns)"/>
+        <metric attr="route_emitter.RouteEmitterSyncDuration"/>
     </stat>
 
     <stat origin="mysql" alias="PAS MySQL KPIs">
-        <metric attr="mysql./mysql/available" alias="MySQL Server Availability"/>
-        <metric attr="mysql./mysql/galera/wsrep_ready" alias="Galera Cluster Node Readiness"/>
-        <metric attr="mysql./mysql/galera/wsrep_cluster_size" alias="Galera Cluster Size"/>
-        <metric attr="mysql./mysql/galera/wsrep_cluster_status" alias="Galera Cluster Status"/>
-        <metric attr="mysql./mysql/net/connections" alias="Connections per Second"/>
-        <metric attr="mysql./mysql/performance/questions" alias="Query Rate"/>
-        <metric attr="mysql./mysql/performance/busy_time" alias="MySQL CPU Busy Time (%)"/>
+        <metric attr="mysql./mysql/available"/>
+        <metric attr="mysql./mysql/galera/wsrep_ready"/>
+        <metric attr="mysql./mysql/galera/wsrep_cluster_size"/>
+        <metric attr="mysql./mysql/galera/wsrep_cluster_status"/>
+        <metric attr="mysql./mysql/net/connections"/>
+        <metric attr="mysql./mysql/performance/questions"/>
+        <metric attr="mysql./mysql/performance/busy_time"/>
     </stat>
 
     <stat origin="gorouter" alias="Gorouter Metrics">
-        <metric attr="gorouter.file_descriptors" alias="Router File Descriptors"/>
-        <metric attr="gorouter.backend_exhausted_conns" alias="Galera Cluster Node Readiness"/>
-        <metric attr="gorouter.latency" alias="Galera Cluster Size"/>
-        <metric attr="gorouter.ms_since_last_registry_update" alias="Galera Cluster Status"/>
-        <metric attr="gorouter.bad_gateways" alias="Connections per Second"/>
-        <metric attr="gorouter.responses.5xx" alias="Query Rate"/>
-        <metric attr="gorouter.registry_message.route-emitter" alias="MySQL CPU Busy Time (%)"/>
-        <metric attr="gorouter.total_requests" alias="Router Throughput"/>
-        <metric attr="gorouter.total_routes" alias="Registered Gorouter Routes"/>
-        <metric attr="gorouter.latency.uaa" alias="UAA Request Latency"/>
+        <metric attr="gorouter.file_descriptors"/>
+        <metric attr="gorouter.backend_exhausted_conns"/>
+        <metric attr="gorouter.latency"/>
+        <metric attr="gorouter.ms_since_last_registry_update"/>
+        <metric attr="gorouter.bad_gateways"/>
+        <metric attr="gorouter.responses.5xx"/>
+        <metric attr="gorouter.registry_message.route-emitter"/>
+        <metric attr="gorouter.total_requests"/>
+        <metric attr="gorouter.total_routes"/>
+        <metric attr="gorouter.latency.uaa"/>
     </stat>
 
     <stat origin="uaa" alias="UAA Metrics">
-        <metric attr="uaa.requests.global.completed.count" alias="UAA Throughput"/>
-        <metric attr="uaa.server.inflight.count" alias="UAA Requests in Flight"/>
+        <metric attr="uaa.requests.global.completed.count"/>
+        <metric attr="uaa.server.inflight.count"/>
+    </stat>-->
+
+    <stat origin="bosh-system-metrics-forwarder" alias="System (BOSH) Metrics">
+        <metric attr="bosh-system-metrics-forwarder.system.healthy"/>
+        <metric attr="bosh-system-metrics-forwarder.system.mem.percent"/>
+        <metric attr="bosh-system-metrics-forwarder.system.disk.system.percent"/>
+        <metric attr="bosh-system-metrics-forwarder.system.disk.ephemeral.percent"/>
+        <metric attr="bosh-system-metrics-forwarder.system.disk.persistent.percent"/>
+        <metric attr="bosh-system-metrics-forwarder.system.cpu.user"/>
     </stat>
 
-    <stat origin="bosh-system-metrics-forwarder" alias="BOSH Metrics">
-        <metric attr="bosh-system-metrics-forwarder.system.healthy" alias="VM Health"/>
-        <metric attr="bosh-system-metrics-forwarder.system.mem.percent" alias="VM Memory Used (%)"/>
-        <metric attr="bosh-system-metrics-forwarder.system.disk.system.percent" alias="VM Disk Used (%)"/>
-        <metric attr="bosh-system-metrics-forwarder.system.disk.ephemeral.percent" alias="VM Ephemeral Disk Used (%)"/>
-        <metric attr="bosh-system-metrics-forwarder.system.disk.persistent.percent" alias="VM Persistent Disk Used (%)"/>
-        <metric attr="bosh-system-metrics-forwarder.system.cpu.user" alias="VM CPU Utilization (%)"/>
+    <stat origin="loggregator.doppler" alias="Loggregator Doppler Metrics">
+        <metric attr="loggregator.doppler.dropped"/>
+        <metric attr="loggregator.doppler.ingress"/>
+    </stat>
+
+    <stat origin="cf-syslog-drain.adapter" alias="CF Syslog Drain Metrics">
+        <metric attr="cf-syslog-drain.adapter.dropped"/>
+        <metric attr="cf-syslog-drain.adapter.ingress"/>
+    </stat>
+
+    <stat origin="loggregator.rlp" alias="Loggregator RLP Metrics">
+        <metric attr="loggregator.rlp.dropped"/>
+        <metric attr="loggregator.rlp.ingress"/>
+    </stat>
+
+    <stat origin="cf-syslog-drain.scheduler" alias="CF Syslog Drain Bindings">
+        <metric attr="cf-syslog-drain.scheduler.drains"/>
     </stat>
 </stats>

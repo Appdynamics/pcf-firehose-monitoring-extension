@@ -34,7 +34,8 @@ public class MetricDataProcessorTest {
 
     @Before
     public void initialize() {
-        monitorContextConfiguration.setMetricXml("/Users/aditya.jagtiani/repos/appdynamics/extensions/pcf-firehose-monitoring-extension/src/test/resources/test-metrics.xml", Stat.Stats.class);
+        monitorContextConfiguration.setMetricXml("/Users/aditya.jagtiani/repos/appdynamics/extensions/" +
+                "pcf-firehose-monitoring-extension/src/test/resources/test-metrics.xml", Stat.Stats.class);
         Stat.Stats metricConfiguration = (Stat.Stats) monitorContextConfiguration.getMetricsXml();
         statsMap = metricConfiguration.getStats();
         metricPrefix = "Custom Metrics|PCF Firehose|";
@@ -46,12 +47,12 @@ public class MetricDataProcessorTest {
     public void extractMetricTest() {
         LoggregatorMetric loggregatorMetric = createLoggregatorMetric();
         Metric metric = metricDataProcessor.extractMetric(loggregatorMetric);
-        Assert.assertTrue(metric.getMetricName().equals("Test Loggregator Metric"));
+        Assert.assertTrue(metric.getMetricName().equals(loggregatorMetric.getName()));
         Assert.assertTrue(metric.getMetricValue().equals(String.valueOf(loggregatorMetric.getValue())));
         Assert.assertTrue(metric.getMetricPath().equals(this.metricPrefix + this.serverName +
                 "|" + this.statsMap.get(loggregatorMetric.getOrigin()).getAlias() + "|" + loggregatorMetric.getOrigin()
                 + "|" + loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|"
-                + statsMap.get(loggregatorMetric.getOrigin()).getMetricConfig().get(loggregatorMetric.getName()).getAlias()));
+                + loggregatorMetric.getName()));
         Assert.assertTrue(metric.getAggregationType().equals("AVERAGE"));
         Assert.assertTrue(metric.getTimeRollUpType().equals("AVERAGE"));
         Assert.assertTrue(metric.getClusterRollUpType().equals("INDIVIDUAL"));

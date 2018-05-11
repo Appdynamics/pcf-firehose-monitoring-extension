@@ -11,6 +11,7 @@ import com.appdynamics.extensions.pcffirehose.input.MetricConfig;
 import com.appdynamics.extensions.pcffirehose.input.Stat;
 import com.appdynamics.extensions.pcffirehose.util.LoggregatorMetricType;
 import com.appdynamics.extensions.util.StringUtils;
+import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
@@ -54,15 +55,34 @@ public class MetricDataProcessor {
                     String metricValue = String.valueOf(loggregatorMetric.getValue());
                     Map<String, String> propertiesMap = new ObjectMapper().convertValue(currentMetricCfg, Map.class);
                     setMetricQualifiers(loggregatorMetric, propertiesMap);
-                    metricName = metricPrefix + serverName + "|" + currentStat.getAlias()
-                            + "|" + loggregatorMetric.getOrigin() + "|" +
-                            loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|" + currentMetricCfg.getAlias();
+                    String baseMetricPrefix = metricPrefix + serverName + "|" + currentStat.getAlias();
+                    metricName =  baseMetricPrefix + "|" + formMetricPath(loggregatorMetric) + "|"
+                            + currentMetricCfg.getAttr();
                     logger.debug("Currently publishing metric {} with a reported value of {}", metricName, metricValue);
-                    metric = new Metric(currentMetricCfg.getAlias(), metricValue, metricName, propertiesMap);
+                    metric = new Metric(currentMetricCfg.getAttr(), metricValue, metricName, propertiesMap);
                 }
             }
         }
         return metric;
+    }
+
+    private String formMetricPath(LoggregatorMetric loggregatorMetric) {
+        if(Strings.isNullOrEmpty(loggregatorMetric.getIndex()) && !Strings.isNullOrEmpty(loggregatorMetric.getIP())) {
+            return loggregatorMetric.getOrigin() + "|" +
+                    loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|" + loggregatorMetric.getIP();
+        }
+
+        else if(!Strings.isNullOrEmpty(loggregatorMetric.getIndex()) && Strings.isNullOrEmpty(loggregatorMetric.getIP())) {
+            return loggregatorMetric.getOrigin() + "|" +
+                    loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|" + loggregatorMetric.getIndex();
+        }
+        else if(Strings.isNullOrEmpty(loggregatorMetric.getIndex()) && Strings.isNullOrEmpty(loggregatorMetric.getIP())) {
+            return loggregatorMetric.getOrigin() + "|" +
+                    loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob();
+        }
+        return loggregatorMetric.getOrigin() + "|" +
+                loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|" +
+                loggregatorMetric.getIndex() + "|" + loggregatorMetric.getIP();
     }
 
     private void setMetricQualifiers(LoggregatorMetric metric, Map<String, String> metricProps) {

@@ -11,9 +11,15 @@ import com.appdynamics.extensions.conf.MonitorContextConfiguration;
 import com.appdynamics.extensions.pcffirehose.input.Stat;
 import com.appdynamics.extensions.util.AssertUtils;
 import com.google.common.collect.Maps;
+import com.singularity.ee.agent.systemagent.api.exception.TaskExecutionException;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.PatternLayout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.OutputStreamWriter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
