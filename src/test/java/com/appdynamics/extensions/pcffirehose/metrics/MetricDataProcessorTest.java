@@ -41,8 +41,7 @@ public class MetricDataProcessorTest {
 
     @Before
     public void initialize() {
-        monitorContextConfiguration.setMetricXml("/Users/aditya.jagtiani/repos/appdynamics/extensions/" +
-                "pcf-firehose-monitoring-extension/src/test/resources/test-metrics.xml", Stat.Stats.class);
+        monitorContextConfiguration.setMetricXml("src/test/resources/test-metrics.xml", Stat.Stats.class);
         Stat.Stats metricConfiguration = (Stat.Stats) monitorContextConfiguration.getMetricsXml();
         statsMap = metricConfiguration.getStats();
         metricPrefix = "Custom Metrics|PCF Firehose|";
