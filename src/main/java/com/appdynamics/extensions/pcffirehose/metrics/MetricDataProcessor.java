@@ -10,19 +10,16 @@ import com.appdynamics.extensions.pcffirehose.consumer.ingress.LoggregatorMetric
 import com.appdynamics.extensions.pcffirehose.input.MetricConfig;
 import com.appdynamics.extensions.pcffirehose.input.Stat;
 import com.appdynamics.extensions.pcffirehose.util.LoggregatorMetricType;
-import com.appdynamics.extensions.util.StringUtils;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.Map;
 
-import static com.appdynamics.extensions.pcffirehose.util.Constants.AVERAGE;
-import static com.appdynamics.extensions.pcffirehose.util.Constants.INDIVIDUAL;
-import static com.appdynamics.extensions.pcffirehose.util.Constants.OBSERVATION;
+import static com.appdynamics.extensions.pcffirehose.util.Constants.*;
+import static com.appdynamics.extensions.pcffirehose.util.PCFFirehoseUtils.getMetricPrefix;
 
 /**
  * Created by aditya.jagtiani on 4/13/18.
@@ -31,15 +28,11 @@ public class MetricDataProcessor {
 
     private static Logger logger = LoggerFactory.getLogger(MetricDataProcessor.class);
     private Stat.Stats metricConfiguration;
-    private String metricPrefix;
-    private String serverName;
     private Map<String, Stat> statsMap = Maps.newHashMap();
 
-    public MetricDataProcessor(Stat.Stats metricConfiguration, String metricPrefix, String serverName) {
+    public MetricDataProcessor(Stat.Stats metricConfiguration) {
         this.metricConfiguration = metricConfiguration;
         statsMap = this.metricConfiguration.getStats();
-        this.metricPrefix = metricPrefix;
-        this.serverName = serverName;
     }
 
     public Metric extractMetric(LoggregatorMetric loggregatorMetric) {
@@ -55,8 +48,7 @@ public class MetricDataProcessor {
                     String metricValue = String.valueOf(loggregatorMetric.getValue());
                     Map<String, String> propertiesMap = new ObjectMapper().convertValue(currentMetricCfg, Map.class);
                     setMetricQualifiers(loggregatorMetric, propertiesMap);
-                    String baseMetricPrefix = metricPrefix + serverName + "|" + currentStat.getAlias();
-                    metricName =  baseMetricPrefix + "|" + formMetricPath(loggregatorMetric) + "|"
+                    metricName = getMetricPrefix() + currentStat.getAlias() + "|" + formMetricPath(loggregatorMetric) + "|"
                             + currentMetricCfg.getAttr();
                     logger.debug("Currently publishing metric {} with a reported value of {}", metricName, metricValue);
                     metric = new Metric(currentMetricCfg.getAttr(), metricValue, metricName, propertiesMap);
@@ -67,22 +59,13 @@ public class MetricDataProcessor {
     }
 
     private String formMetricPath(LoggregatorMetric loggregatorMetric) {
-        if(Strings.isNullOrEmpty(loggregatorMetric.getIndex()) && !Strings.isNullOrEmpty(loggregatorMetric.getIP())) {
-            return loggregatorMetric.getOrigin() + "|" +
-                    loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|" + loggregatorMetric.getIP();
-        }
-
-        else if(!Strings.isNullOrEmpty(loggregatorMetric.getIndex()) && Strings.isNullOrEmpty(loggregatorMetric.getIP())) {
+        if (!Strings.isNullOrEmpty(loggregatorMetric.getIndex())) {
             return loggregatorMetric.getOrigin() + "|" +
                     loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|" + loggregatorMetric.getIndex();
         }
-        else if(Strings.isNullOrEmpty(loggregatorMetric.getIndex()) && Strings.isNullOrEmpty(loggregatorMetric.getIP())) {
-            return loggregatorMetric.getOrigin() + "|" +
-                    loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob();
-        }
+
         return loggregatorMetric.getOrigin() + "|" +
-                loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|" +
-                loggregatorMetric.getIndex() + "|" + loggregatorMetric.getIP();
+                loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob();
     }
 
     private void setMetricQualifiers(LoggregatorMetric metric, Map<String, String> metricProps) {

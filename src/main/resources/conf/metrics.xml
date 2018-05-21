@@ -5,10 +5,11 @@
 
 <stats>
     <stat origin="auctioneer" alias="Diego Auctioneer Metrics">
-        <metric attr="auctioneer.AuctioneerLRPAuctionsFailed"/>
+        <metric attr="auctioneer.AuctioneerLRPAuctionsFailed" delta="true"/>
         <metric attr="auctioneer.AuctioneerFetchStatesDuration" />
-        <metric attr="auctioneer.AuctioneerLRPAuctionsStarted" />
+        <metric attr="auctioneer.AuctioneerLRPAuctionsStarted" delta="true" />
         <metric attr="auctioneer.LockHeld" />
+        <metric attr="auctioneer.AuctioneerTaskAuctionsFailed" delta="true"/>
     </stat>
 
     <stat origin="bbs" alias="Diego BBS Metrics">
@@ -54,14 +55,14 @@
 
     <stat origin="gorouter" alias="Gorouter Metrics">
         <metric attr="gorouter.file_descriptors"/>
-        <metric attr="gorouter.backend_exhausted_conns"/>
+        <metric attr="gorouter.backend_exhausted_conns" delta="true"/>
         <metric attr="gorouter.latency"/>
         <metric attr="gorouter.ms_since_last_registry_update"/>
-        <metric attr="gorouter.bad_gateways"/>
-        <metric attr="gorouter.responses.5xx"/>
+        <metric attr="gorouter.bad_gateways" delta="true"/>
+        <metric attr="gorouter.responses.5xx" delta="true"/>
         <metric attr="gorouter.registry_message.route-emitter"/>
-        <metric attr="gorouter.total_requests"/>
-        <metric attr="gorouter.total_routes"/>
+        <metric attr="gorouter.total_requests" delta="true"/>
+        <metric attr="gorouter.total_routes" delta="true"/>
         <metric attr="gorouter.latency.uaa"/>
     </stat>
 

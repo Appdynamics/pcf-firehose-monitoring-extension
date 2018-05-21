@@ -11,11 +11,16 @@ import com.appdynamics.extensions.metrics.Metric;
 import com.appdynamics.extensions.pcffirehose.consumer.ingress.LoggregatorMetric;
 import com.appdynamics.extensions.pcffirehose.input.Stat;
 import com.appdynamics.extensions.pcffirehose.util.LoggregatorMetricType;
+import com.appdynamics.extensions.pcffirehose.util.PCFFirehoseUtils;
 import com.google.common.collect.Maps;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.File;
 import java.util.Map;
@@ -23,6 +28,8 @@ import java.util.Map;
 /**
  * Created by aditya.jagtiani on 5/2/18.
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({PCFFirehoseUtils.class, MetricDataProcessor.class})
 public class MetricDataProcessorTest {
 
     private MetricDataProcessor metricDataProcessor;
@@ -40,7 +47,9 @@ public class MetricDataProcessorTest {
         statsMap = metricConfiguration.getStats();
         metricPrefix = "Custom Metrics|PCF Firehose|";
         serverName = "Server 1";
-        metricDataProcessor = new MetricDataProcessor(metricConfiguration, metricPrefix, serverName);
+        metricDataProcessor = new MetricDataProcessor(metricConfiguration);
+        PowerMockito.mockStatic(PCFFirehoseUtils.class);
+        PowerMockito.when(PCFFirehoseUtils.getMetricPrefix()).thenReturn(metricPrefix);
     }
 
     @Test
@@ -49,8 +58,8 @@ public class MetricDataProcessorTest {
         Metric metric = metricDataProcessor.extractMetric(loggregatorMetric);
         Assert.assertTrue(metric.getMetricName().equals(loggregatorMetric.getName()));
         Assert.assertTrue(metric.getMetricValue().equals(String.valueOf(loggregatorMetric.getValue())));
-        Assert.assertTrue(metric.getMetricPath().equals(this.metricPrefix + this.serverName +
-                "|" + this.statsMap.get(loggregatorMetric.getOrigin()).getAlias() + "|" + loggregatorMetric.getOrigin()
+        Assert.assertTrue(metric.getMetricPath().equals(this.metricPrefix +
+                this.statsMap.get(loggregatorMetric.getOrigin()).getAlias() + "|" + loggregatorMetric.getOrigin()
                 + "|" + loggregatorMetric.getDeployment() + "|" + loggregatorMetric.getJob() + "|"
                 + loggregatorMetric.getName()));
         Assert.assertTrue(metric.getAggregationType().equals("AVERAGE"));

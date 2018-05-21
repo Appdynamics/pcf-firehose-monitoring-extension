@@ -28,7 +28,6 @@ import static com.appdynamics.extensions.pcffirehose.util.PCFFirehoseUtils.*;
  */
 public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
     private static Logger logger = LoggerFactory.getLogger(PCFFirehoseMonitorTask.class);
-    private Map<String, ?> config;
     private MetricWriteHelper metricWriteHelper;
     private Map<String, String> server;
     private MonitorContextConfiguration monitorContextConfiguration;
@@ -61,8 +60,7 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
         while (true) {
             try {
                 LoggregatorMetric loggregatorMetric = consumer.getLoggregatorMetric();
-                Metric metric = new MetricDataProcessor(metricConfiguration,
-                        getMetricPrefix(), server.get("name")).extractMetric(loggregatorMetric);
+                Metric metric = new MetricDataProcessor(metricConfiguration).extractMetric(loggregatorMetric);
                 if (metric != null) {
                     metricsToBePublished.add(metric);
                     metricWriteHelper.transformAndPrintMetrics(metricsToBePublished);
