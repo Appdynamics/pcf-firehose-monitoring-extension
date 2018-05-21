@@ -71,4 +71,3 @@ Please follow the steps listed in the [extensions troubleshooting document](http
 |Controller Compatibility  |3.7 or Later|
 |Product Tested On         |Loggregator 2.x on a full PCF deployment (PIE-20)|
 |Last Update               |05/21/2018 |
-|List of Changes           |[Change log](https://github.com/Appdynamics/netscaler-monitoring-extension/blob/netscaler-monitoring-extension-1.0.0/changelog.md) |
