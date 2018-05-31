@@ -25,18 +25,6 @@ public class PCFFirehoseUtils {
         return System.getenv(NUM_OF_THREADS_SYSTEM_PROP);
     }
 
-    public static String getCertificate() {
-        return System.getenv(CERT_FILE_SYSTEM_PROP);
-    }
-
-    public static String getCACertificate() {
-        return System.getenv(CA_CERT_FILE_SYSTEM_PROP);
-    }
-
-    public static String getPrivateKey() {
-        return System.getenv(PRIVATE_KEY_SYSTEM_PROP);
-    }
-
     public static String getAuthority() {
         return System.getenv(AUTHORITY_SYSTEM_PROP);
     }
@@ -64,30 +52,8 @@ public class PCFFirehoseUtils {
         return config;
     }
 
-    public static String writeCertFile(String content, String fileName) throws Exception {
-        File file = new File(fileName);
-        FileWriter writer = new FileWriter(file);
-        writer.write(content);
-        writer.close();
-        return file.getAbsolutePath();
-    }
-
     public static String getMetricPrefix() {
         return METRIC_PREFIX.replace("{}", getComponentId());
     }
 
-    //the environment expects .pem files to have exactly 64 characters on each line. This method ensures that
-    public static String processCertFile(String cert, String start_header, String end_header) {
-        try {
-            int start_header_len = start_header.length();
-            int end_header_index = cert.indexOf(end_header);
-
-            String certificate = cert.substring(start_header_len, end_header_index);
-            String[] certSubstrings = certificate.split("(?<=\\G.{64})");
-            return start_header + '\n' + String.join("\n", certSubstrings) + '\n' + end_header;
-        } catch (Exception e) {
-            logger.error("Error while processing certificates: ", e);
-        }
-        return "";
-    }
 }

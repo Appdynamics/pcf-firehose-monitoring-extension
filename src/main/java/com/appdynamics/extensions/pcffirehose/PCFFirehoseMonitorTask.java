@@ -52,10 +52,7 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
 
     private void populateAndPrintStats() throws Exception {
         LoggregatorConsumer consumer = new LoggregatorConsumer(server.get("host"), Integer.parseInt(server.get("port")),
-                writeCertFile(processCertFile(getCertificate(), CERTIFICATE_HEADER, CERTIFICATE_FOOTER), "conf/cert.pem"),
-                writeCertFile(processCertFile(getPrivateKey(), PRIVATE_KEY_HEADER, PRIVATE_KEY_FOOTER), "conf/privateKey.key"),
-                writeCertFile(processCertFile(getCACertificate(), CERTIFICATE_HEADER, CERTIFICATE_FOOTER), "conf/cacert.pem"),
-                getAuthority());
+                "conf/cert.pem", "conf/privateKey-pkcs8.key", "conf/ca_cert.pem", getAuthority());
 
         while (true) {
             try {
