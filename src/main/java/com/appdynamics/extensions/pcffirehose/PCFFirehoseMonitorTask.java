@@ -17,14 +17,10 @@ import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FilePermission;
-import java.net.NetPermission;
-import java.security.Permission;
 import java.util.List;
 import java.util.Map;
 
-import static com.appdynamics.extensions.pcffirehose.util.Constants.*;
-import static com.appdynamics.extensions.pcffirehose.util.PCFFirehoseUtils.*;
+import static com.appdynamics.extensions.pcffirehose.util.PCFFirehoseUtils.getAuthority;
 
 /**
  * Created by aditya.jagtiani on 3/20/18.
@@ -54,10 +50,6 @@ public class PCFFirehoseMonitorTask implements AMonitorTaskRunnable {
     }
 
     private void populateAndPrintStats() throws Exception {
-/*        List<Permission> permissions = Lists.newArrayList();
-        permissions.add(new NetPermission("getProxySelector", "read"));
-        permissions.add(new FilePermission(System.getProperty("java.io.tmpdir")+"/-", "read,write"));
-        permissions.add(new RuntimePermission("loadLibrary.*"));*/
         LoggregatorConsumer consumer = new LoggregatorConsumer(server.get("host"), Integer.parseInt(server.get("port")),
                 "conf/cert.pem", "conf/privateKey-pkcs8.key", "conf/ca_cert.pem", getAuthority());
 
