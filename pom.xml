@@ -6,7 +6,7 @@
 
     <groupId>pcf-firehose-monitoring-extension</groupId>
     <artifactId>pcf-firehose-monitoring-extension</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -139,6 +139,12 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.5.1</version>
         </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-handler</artifactId>
+            <version>4.1.17.Final</version>
+        </dependency>
+
     </dependencies>
 
     <build>
